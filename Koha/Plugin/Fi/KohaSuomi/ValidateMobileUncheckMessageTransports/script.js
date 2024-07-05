@@ -19,13 +19,13 @@ $(document).ready(function () {
     $('#pat_memberentrygen #saverecord').replaceWith('<button class="btn btn-primary" id="modified_saverecord"><i class="fa fa-save"></i> '+save_text+'</button>');
   
       var isvalid = 1;
+      var all_phone_regex = REPLACE_BY_CONFIG_PARAM_A;
   
       $('#phone').blur(function () {
         var error_mes = "";
         var phone = $('#phone').val();
-        var phone_reg = REPLACE_BY_CONFIG_PARAM_A;
   
-        if (phone && !phone_reg.test(phone)) {
+        if (phone && !all_phone_regex.test(phone)) {
           error_mes = error_mes + "\nPlease enter a valid phone number.\n";
           $('#phone').after('<label id="phone-error" class="error" for="phone">' + error_mes + '</label>');
           isvalid = 0;
@@ -37,9 +37,8 @@ $(document).ready(function () {
       $('#mobile').blur(function () {
         var error_mes = "";
         var mobile = $('#mobile').val();
-        var mobile_reg = REPLACE_BY_CONFIG_PARAM_A;
   
-        if (mobile && !mobile_reg.test(mobile)) {
+        if (mobile && !all_phone_regex.test(mobile)) {
           error_mes = error_mes + "\nPlease enter a valid mobile number.\n";
           $('#mobile').after('<label id="mobile-error" class="error" for="mobile">' + error_mes + '</label>');
           isvalid = 0;
@@ -51,9 +50,8 @@ $(document).ready(function () {
       $('#SMSnumber').blur(function () {
         var error_mes = "";
         var SMSnumber = $('#SMSnumber').val();
-        var SMSnumber_reg = REPLACE_BY_CONFIG_PARAM_A;
   
-        if (SMSnumber && !SMSnumber_reg.test(SMSnumber)) {
+        if (SMSnumber && !all_phone_regex.test(SMSnumber)) {
           error_mes = error_mes + "\nPlease enter a valid SMS number.\n";
           $('#SMSnumber').after('<label id="SMSnumber-error" class="error" for="SMSnumber">' + error_mes + '</label>');
           isvalid = 0;
