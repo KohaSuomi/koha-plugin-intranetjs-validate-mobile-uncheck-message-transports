@@ -1,4 +1,4 @@
-package Koha::Plugin::Fi::KohaSuomi::ValidateMobileUncheckMessageTransports;
+package Koha::Plugin::Fi::KohaSuomi::01ValidateMobileUncheckMessageTransports;
 
 ## It's good practice to use Modern::Perl
 use Modern::Perl;
@@ -50,7 +50,7 @@ sub intranet_js {
     my ( $self, $args ) = @_;
 
     my $dir=C4::Context->config('pluginsdir');
-    my $plugin_fulldir = $dir . "/Koha/Plugin/Fi/KohaSuomi/ValidateMobileUncheckMessageTransports/";
+    my $plugin_fulldir = $dir . "/Koha/Plugin/Fi/KohaSuomi/01ValidateMobileUncheckMessageTransports/";
     my $js = read_file($plugin_fulldir .'script.js');
     
     my $param_a = $self->retrieve_data('config_param_a');

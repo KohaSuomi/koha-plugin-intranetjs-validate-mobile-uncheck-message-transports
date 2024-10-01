@@ -2,6 +2,7 @@
 /* Puhelinnumeron muodon tarkistus ja email/sms-viestitäpät*/
 
 $(document).ready(function () {
+
   if (window.location.href.indexOf("members/memberentry.pl") > -1) {
     
     $('#SMSnumber').attr('disabled', 'disabled');
