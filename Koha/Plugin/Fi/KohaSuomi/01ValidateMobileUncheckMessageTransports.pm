@@ -22,7 +22,7 @@ our $metadata = {
     minimum_version => '23.11',
     maximum_version => '',
     version         => $VERSION,
-    description     => "Puhelinnumeron muodon tarkistus ja turhien email/sms-viestitäppien poisto. Konfiguroitava.",
+    description     => "Puhelinnumeron muodon tarkistus ja turhien email/sms-viestitäppien poisto. Konfiguroitava. (Paikalliskannat)",
 };
 
 ## This is the minimum code required for a plugin's 'new' method
