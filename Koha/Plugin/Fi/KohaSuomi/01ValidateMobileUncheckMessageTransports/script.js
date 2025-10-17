@@ -71,7 +71,7 @@ $(document).ready(function () {
         //Vahvista viestitäppien poisto jos sähköposti/matkapuhelin puuttuu popupissa
 
         if (!$('#email').val()) {
-          if ($('#email1').attr('checked') || $('#email2').attr('checked') || $('#email3').attr('checked') || $('#email4').attr('checked') || $('#email5').attr('checked') || $('#email6').attr('checked') || $('#email10').attr('checked')) {
+          if ($('#email1').attr('checked') || $('#email2').attr('checked') || $('#email3').attr('checked') || $('#email4').attr('checked') || $('#email5').attr('checked') || $('#email6').attr('checked') || $('#email10').attr('checked') || $('#email14').attr('checked')) {
             text = "Sähköpostiosoite puuttuu. Sähköposti-viestiasetukset poistetaan.\n";
             $('#email1').removeAttr('checked');
             $('#email1').attr('disabled', 'disabled');
@@ -87,10 +87,12 @@ $(document).ready(function () {
             $('#email6').attr('disabled', 'disabled');
             $('#email10').removeAttr('checked');
             $('#email10').attr('disabled', 'disabled');
+            $('#email14').removeAttr('checked');
+            $('#email14').attr('disabled', 'disabled');
           }
         }
         if (!$('#mobile').val()) {
-          if ($('#sms1').attr('checked') || $('#sms4').attr('checked') || $('#sms10').attr('checked')) {
+          if ($('#sms1').attr('checked') || $('#sms4').attr('checked') || $('#sms10').attr('checked') || $('#sms14').attr('checked')) {
             text += "Matkapuhelinnumero puuttuu. Tekstiviesti-viestiasetukset poistetaan.";
             $('#sms1').removeAttr('checked');
             $('#sms1').attr('disabled', 'disabled');
@@ -98,6 +100,8 @@ $(document).ready(function () {
             $('#sms4').attr('disabled', 'disabled');
             $('#sms10').removeAttr('checked');
             $('#sms10').attr('disabled', 'disabled');
+            $('#sms14').removeAttr('checked');
+            $('#sms14').attr('disabled', 'disabled');
           }
         }
 
