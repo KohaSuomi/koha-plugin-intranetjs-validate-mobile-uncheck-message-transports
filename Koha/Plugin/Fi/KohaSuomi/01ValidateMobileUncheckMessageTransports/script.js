@@ -1,13 +1,12 @@
-
 /* Puhelinnumeron muodon tarkistus ja email/sms-viestitäpät*/
 
 $(document).ready(function () {
 
   if (window.location.href.indexOf("members/memberentry.pl") > -1) {
-    
+
     $('#SMSnumber').attr('disabled', 'disabled');
-    // Replace forms "Save" button 
-    // (otherwise form is sent regardless validation checks made here) 
+    // Replace forms "Save" button
+    // (otherwise form is sent regardless validation checks made here)
     var language = $(".currentlanguage").text();
     var save_text;
     if (language == "Suomi") {
@@ -71,37 +70,47 @@ $(document).ready(function () {
         //Vahvista viestitäppien poisto jos sähköposti/matkapuhelin puuttuu popupissa
 
         if (!$('#email').val()) {
-          if ($('#email1').attr('checked') || $('#email2').attr('checked') || $('#email3').attr('checked') || $('#email4').attr('checked') || $('#email5').attr('checked') || $('#email6').attr('checked') || $('#email10').attr('checked') || $('#email14').attr('checked')) {
+          // check any email checkbox from #email1 .. #email14
+          var anyEmailChecked = false;
+          for (var i = 1; i <= 14; i++) {
+            var $emailEl = $('#email' + i);
+            if ($emailEl.length && $emailEl.prop('checked')) {
+              anyEmailChecked = true;
+              break;
+            }
+          }
+
+          if (anyEmailChecked) {
             text = "Sähköpostiosoite puuttuu. Sähköposti-viestiasetukset poistetaan.\n";
-            $('#email1').removeAttr('checked');
-            $('#email1').attr('disabled', 'disabled');
-            $('#email2').removeAttr('checked');
-            $('#email2').attr('disabled', 'disabled');
-            $('#email3').removeAttr('checked');
-            $('#email3').attr('disabled', 'disabled');
-            $('#email4').removeAttr('checked');
-            $('#email4').attr('disabled', 'disabled');
-            $('#email5').removeAttr('checked');
-            $('#email5').attr('disabled', 'disabled');
-            $('#email6').removeAttr('checked');
-            $('#email6').attr('disabled', 'disabled');
-            $('#email10').removeAttr('checked');
-            $('#email10').attr('disabled', 'disabled');
-            $('#email14').removeAttr('checked');
-            $('#email14').attr('disabled', 'disabled');
+            // uncheck and disable all email checkboxes #email1 .. #email14 that exist
+            for (var j = 1; j <= 14; j++) {
+              var $e = $('#email' + j);
+              if ($e.length) {
+                $e.prop('checked', false).prop('disabled', true);
+              }
+            }
           }
         }
         if (!$('#mobile').val()) {
-          if ($('#sms1').attr('checked') || $('#sms4').attr('checked') || $('#sms10').attr('checked') || $('#sms14').attr('checked')) {
+          // check any sms checkbox from #sms1 .. #sms14
+          var anySmsChecked = false;
+          for (var i = 1; i <= 14; i++) {
+            var $sms = $('#sms' + i);
+            if ($sms.length && $sms.prop('checked')) {
+              anySmsChecked = true;
+              break;
+            }
+          }
+
+          if (anySmsChecked) {
             text += "Matkapuhelinnumero puuttuu. Tekstiviesti-viestiasetukset poistetaan.";
-            $('#sms1').removeAttr('checked');
-            $('#sms1').attr('disabled', 'disabled');
-            $('#sms4').removeAttr('checked');
-            $('#sms4').attr('disabled', 'disabled');
-            $('#sms10').removeAttr('checked');
-            $('#sms10').attr('disabled', 'disabled');
-            $('#sms14').removeAttr('checked');
-            $('#sms14').attr('disabled', 'disabled');
+            // uncheck and disable all sms checkboxes #sms1 .. #sms14 that exist
+            for (var j = 1; j <= 14; j++) {
+              var $smsEl = $('#sms' + j);
+              if ($smsEl.length) {
+                $smsEl.prop('checked', false).prop('disabled', true);
+              }
+            }
           }
         }
 
