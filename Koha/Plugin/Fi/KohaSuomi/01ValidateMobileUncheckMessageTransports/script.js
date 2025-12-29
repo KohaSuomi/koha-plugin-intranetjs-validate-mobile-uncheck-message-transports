@@ -7,7 +7,7 @@ $(document).ready(function () {
     $('#SMSnumber').attr('disabled', 'disabled');
     // Replace forms "Save" button
     // (otherwise form is sent regardless validation checks made here)
-    var language = $(".currentlanguage").text();
+    var language = $(".currentlanguage").text().trim();
     var save_text;
     if (language == "Suomi") {
       save_text = "Tallenna";
