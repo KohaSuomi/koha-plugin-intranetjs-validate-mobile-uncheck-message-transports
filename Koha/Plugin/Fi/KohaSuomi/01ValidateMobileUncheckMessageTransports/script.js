@@ -25,12 +25,34 @@ $(document).ready(function () {
     var isvalid = 1;
     var all_phone_regex = REPLACE_BY_CONFIG_PARAM_A;
 
+    var phone_error_text, mobile_error_text, sms_error_text;
+    var email_missing_text, sms_missing_text;
+    if (language == "Suomi") {
+      phone_error_text = "Syötä kelvollinen puhelinnumero.";
+      mobile_error_text = "Syötä kelvollinen matkapuhelinnumero.";
+      sms_error_text = "Syötä kelvollinen tekstiviestin numero.";
+      email_missing_text = "Sähköpostiosoite puuttuu. Sähköposti-viestiasetukset poistetaan.";
+      sms_missing_text = "Matkapuhelinnumero puuttuu. Tekstiviesti-viestiasetukset poistetaan.";
+    } else if (language == "Svenska") {
+      phone_error_text = "Ange ett giltigt telefonnummer.";
+      mobile_error_text = "Ange ett giltigt mobilnummer.";
+      sms_error_text = "Ange ett giltigt SMS-nummer.";
+      email_missing_text = "E-postadress saknas. E-postmeddelandeinställningar tas bort.";
+      sms_missing_text = "Mobilnummer saknas. SMS-meddelandeinställningar tas bort.";
+    } else {
+      phone_error_text = "Please enter a valid phone number.";
+      mobile_error_text = "Please enter a valid mobile number.";
+      sms_error_text = "Please enter a valid SMS number.";
+      email_missing_text = "Email address is missing. Email message settings will be removed.";
+      sms_missing_text = "Mobile phone number is missing. SMS message settings will be removed.";
+    }
+
     $('#phone').blur(function () {
       var error_mes = "";
       var phone = $('#phone').val();
 
       if (phone && !all_phone_regex.test(phone)) {
-        error_mes = error_mes + "\nPlease enter a valid phone number.\n";
+        error_mes = error_mes + "\n" + phone_error_text + "\n";
         $('#phone').after('<label id="phone-error" class="error" for="phone">' + error_mes + '</label>');
         isvalid = 0;
       } else {
@@ -43,7 +65,7 @@ $(document).ready(function () {
       var mobile = $('#mobile').val();
 
       if (mobile && !all_phone_regex.test(mobile)) {
-        error_mes = error_mes + "\nPlease enter a valid mobile number.\n";
+        error_mes = error_mes + "\n" + mobile_error_text + "\n";
         $('#mobile').after('<label id="mobile-error" class="error" for="mobile">' + error_mes + '</label>');
         isvalid = 0;
       } else {
@@ -56,7 +78,7 @@ $(document).ready(function () {
       var SMSnumber = $('#SMSnumber').val();
 
       if (SMSnumber && !all_phone_regex.test(SMSnumber)) {
-        error_mes = error_mes + "\nPlease enter a valid SMS number.\n";
+        error_mes = error_mes + "\n" + sms_error_text + "\n";
         $('#SMSnumber').after('<label id="SMSnumber-error" class="error" for="SMSnumber">' + error_mes + '</label>');
         isvalid = 0;
       } else {
@@ -81,7 +103,7 @@ $(document).ready(function () {
           }
 
           if (anyEmailChecked) {
-            text = "Sähköpostiosoite puuttuu. Sähköposti-viestiasetukset poistetaan.\n";
+            text = email_missing_text + "\n";
             // uncheck and disable all email checkboxes #email1 .. #email14 that exist
             for (var j = 1; j <= 14; j++) {
               var $e = $('#email' + j);
@@ -103,7 +125,7 @@ $(document).ready(function () {
           }
 
           if (anySmsChecked) {
-            text += "Matkapuhelinnumero puuttuu. Tekstiviesti-viestiasetukset poistetaan.";
+            text += sms_missing_text;
             // uncheck and disable all sms checkboxes #sms1 .. #sms14 that exist
             for (var j = 1; j <= 14; j++) {
               var $smsEl = $('#sms' + j);
